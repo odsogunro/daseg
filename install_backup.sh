@@ -6,20 +6,9 @@ CWD="$(pwd)"
 
 mkdir -p deps
 
-# DAMI - TODO: investigate
-# (daseg) dkazeem@c01:~/Projects/daseg$ ./install.sh
-# Cloning into 'deps/swda'...
-# remote: Enumerating objects: 72, done.
-# remote: Counting objects: 100% (13/13), done.
-# remote: Compressing objects: 100% (10/10), done.
-# remote: Total 72 (delta 6), reused 9 (delta 3), pack-reused 59
-# Unpacking objects: 100% (72/72), done.
-# fatal: missing blob object '7db25bdd615b785b697d12f09afb2ea39de95105'
-# fatal: remote did not send all necessary objects
-
 # Obtain the swda repo and make it a detectable python package
 if [ ! -d deps/swda ]; then
-  git clone https://github.com/cgpotts/swda.git deps/swda
+  git clone https://github.com/cgpotts/swda deps/swda
   cat <<EOM >deps/swda/setup.py
 from setuptools import setup, find_packages
 setup(

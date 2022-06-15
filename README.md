@@ -34,6 +34,7 @@ The preferred way to use `daseg` is with an anaconda environment. We tested it w
 
 ```
 conda create -n daseg python=3.8
+conda create -n daseg python=3.9
 conda activate daseg
 ```
 
