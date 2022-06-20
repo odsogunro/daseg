@@ -8,3 +8,8 @@ gluonnlp
 seaborn
 mxnet
 pytorch-lightning==0.8.5
+
+# dami
+more_itertools
+transformers
+h5py
