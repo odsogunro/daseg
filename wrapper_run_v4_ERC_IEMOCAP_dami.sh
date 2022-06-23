@@ -10,8 +10,28 @@ set -x
 train_mode=TE
 for concat_aug in -1 #0 # -1 ##-1 #-1 #-1 # 0 #-1
 do
-for task_name in IEMOCAP_ConvClassif_BERT
 
+# for task_name in IEMOCAP_ConvClassif_BERT
+
+# for task_name in IEMOCAP_UttClassif_bilstm 
+# for task_name in IEMOCAP_UttClassif_ResNet
+# for task_name in IEMOCAP_UttClassif_longformer
+
+# for task_name in IEMOCAP_ConvClassif_XFormerConcatTokenTypeEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
+# for task_name in IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
+# for task_name in IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
+for task_name in IEMOCAP_ConvClassif_xformer_NoInfreqEmo
+# for task_name in IEMOCAP_ConvClassif_XFormerConcatAveParamSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+# for task_name in IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+# for task_name in IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+# for task_name in IEMOCAP_ConvClassif_xformer_smoothed_overlap_silenceNone_OOSNone
+# for task_name in IEMOCAP_ConvClassif_XFormerConcatSpeakerEmb_smoothed_overlap_silenceNone_OOSNone 
+# for task_name in IEMOCAP_ConvClassif_XFormerAddSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+
+
+###
+# Raghu
+###
 #IEMOCAP_UttClassif_bilstm 
 #IEMOCAP_UttClassif_ResNet
 #IEMOCAP_UttClassif_longformer
@@ -27,7 +47,7 @@ for task_name in IEMOCAP_ConvClassif_BERT
 #IEMOCAP_ConvClassif_XFormerConcatSpeakerEmb_smoothed_overlap_silenceNone_OOSNone 
 #IEMOCAP_ConvClassif_XFormerAddSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
 do
-    for cv in 1 #2 3  4 #1 2 3 4 5 
+    for cv in 2 # 2 3 4 #1 2 3 4 5 
     do
         gpu=1
         grid=True

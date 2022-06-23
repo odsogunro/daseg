@@ -1,0 +1,233 @@
+
+
+# set a fancy prompt (non-color, unless we know we "want" color)                                                                                                                                             
+case "$TERM" in
+xterm-color)
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    ;;
+*)
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases                                                                                                                                                      
+if [ "$TERM" != "dumb" ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    #alias dir='ls --color=auto --format=vertical'                                                                                                                                           
+    alias u='du -hs'
+    alias f='df -h'    
+    alias a='ls -ltr'
+    alias p='readlink -f'
+    alias q='qstat'
+    alias d='qdel'
+    alias io='sudo iotop'
+    alias kipy='CUDA_VISIBLE_DEVICES=" " ipython3'
+    alias kpy='CUDA_VISIBLE_DEVICES=" " python' 
+    #alias ks='source activate keras_tf'
+    alias ks='source activate keras_July2019_TF1.9'
+    alias qda="qstat |cut -d ' ' -f1 |xargs qdel"
+    alias pyt="source activate pytorch_May2019"
+    alias lhotse="source activate lhotse"
+    alias erc_v2="source activate daseg_v2"
+    alias erc="source activate daseg"
+    alias speechbrain="source activate speechbrain_expt"
+    alias io='sudo iotop -u rpapagari'
+    alias nvs='nvidia-smi'
+    alias qconf='qconf -srqs'
+    alias htop='htop -u rpapagari'
+    alias md='cd /export/b15/rpapagari/kaldi_21Aug2019/egs/sre16/Emotion_xvector_ICASSP2020_ComParE_v2'
+    alias jn='jupyter notebook --port=2214 --no-browser'
+    
+    #alias vdir='ls --color=auto --format=long'                                                                                                                                                              
+fi
+
+export HDF5_USE_FILE_LOCKING=FALSE
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias qstat='qstat -u $USER'
+alias top='top -u $USER'
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+
+unset PYTHONPATH
+# export PYTHONPATH=/home/harish/scripts/python:/home/vpeddinti/scripts/python:/export/a07/harish/VAD_RATS_2013/scripts/iveselyk/Tools/pytel/trunk:$PYTHONPATH
+export PYTHONPATH=/home/harish/scripts/python:/home/vpeddinti/scripts/python:/home/harish/lib/pytel/pytel:/home/harish/lib/pytel:$PYTHONPATH
+
+# path to speech utils and tools
+
+#export PATH=/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/scripts:/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/extras/sph2pipe_v2.5:/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/extras/miniconda3/bin:/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/extras/miniconda3/envs/py35_amdtk/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/dell/srvadmin/bin
+
+
+export PATH=/home/samuel/bin/bin64:/home/sivaram/speech_tools/bin/:/home/harish/bin:$PATH
+export PATH=/export/a07/harish/babel/bbn2pfile/bbn_tools:$PATH
+
+SCRIPTS_ROOT=/export/a07/harish/VAD_RATS_2013/DEVEL/TNet_PACKAGE/TNet/scripts_for_but
+export PATH=$PATH:$SCRIPTS_ROOT:$SCRIPTS_ROOT/sge:$SCRIPTS_ROOT/gpu
+
+export MATLAB_JAVA=/usr/lib/jvm/java-6-openjdk/jre
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/:/lib:/usr/lib:/home/harish/lib/lib
+export LD_LIBRARY_PATH=/home/dpovey/libs:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/rpapagari/judy/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+
+export CUDA_HOME=/usr/local/cuda
+
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/export/b15/rpapagari/cuda/lib64/:/home/rpapagari/.openmpi/lib
+
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/janto/usr/local/cudnn-9.1-v7.1/lib64:/home/rpapagari/.openmpi/lib
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/rpapagari/cuda_Jesus/lib64:/home/rpapagari/.openmpi/lib
+export LD_LIBRARY_PATH=/opt/NVIDIA/cuda-8.0/lib64/:/mnt/data/janto/SITW/v4x_transfer/usr/local/cudnn-v5.1/lib64:$LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=/home/rpapagari/anaconda3/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/home/rpapagari/anaconda3/pkgs/opencv-3.1.0-np112py36_1/lib:$LD_LIBRARY_PATH
+
+
+#export LD_LIBRARY_PATH=/home/rpapagari/anaconda3/envs/cntk-py36/lib:$LD_LIBRARY_PATH
+
+export MANPATH=$MANPATH:/home/harish/man
+
+export PATH=$PATH:/export/a07/raghavendra/speech_softwares/htk
+export PATH=$PATH:/home/rpapagari/auto_codes
+export PATH=$PATH:/home/rpapagari/judy
+PS1="\[\033[0;31m\]\u@\h \e[m\e[0;0m\$PWD\[\033[0m\]\n~> "
+export PATH=/home/rpapagari/anaconda3/bin:$PATH
+
+export PATH=$PATH:/home/rpapagari/.openmpi/bin
+#export PATH=$PATH:/home/rpapagari/anaconda3/pkgs/opencv-3.1.0-np112py36_1/bin/
+
+################# CHANGE BY LUCAS ##########################
+#export PATH=/usr/bin:/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/scripts:/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/extras/sph2pipe_v2.5:/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/extras/miniconda3/bin:/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk/extras/miniconda3/envs/py35_amdtk/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/dell/srvadmin/bin:$PATH
+
+#export PATH=/export/a07/raghavendra/anaconda2/envs/py35/bin:$PATH  ## inlcuded to be compatible with python3 codes. Can be removed whenever problem with python versions arises
+
+
+#export PYTHONPATH=/export/a06/santoshk/JHUWorkshop2016/AUD/tools/amdtk:$PYTHONPATH
+
+export PYTHONPATH=/usr/bin/python:$PYTHONPATH:/home/rpapagari/global_codes
+
+#WORKSPACE_PATH=/home/snidada1/usr/src/workspace
+#HYP_PATH1=/export/b17/snidada1/hyperion
+#HYP_PATH=/export/b17/snidada1/hyperion/hyperion-jsalt19
+export PYTHONPATH=/home/rpapagari/global_codes:$HYP_PATH1:$HYP_PATH:$WORKSPACE_PATH:$PYTHONPATH
+export PYTHONPATH=/export/b15/rpapagari/Tianzi_work:$PYTHONPATH
+#export PYTHONPATH=/export/a07/raghavendra/anaconda2/envs/py35/bin/python:$PYTHONPATH ## inlcuded to be compatible with python3 codes. Can be removed whenever problem with python versions arises
+
+#unset PYTHONPATH
+
+#############################################################
+
+export OPENBLAS_NUM_THREADS=1
+
+export OMP_NUM_THREADS=1                                                                                                                                                                                                                  
+export MKL_NUM_THREADS=1
+
+
+#export PYTHONPATH=$PYTHONPATH:/home/rpapagari/global_codes/numpy_io
+#export PYTHONPATH=$PYTHONPATH:/export/b15/rpapagari/kaldi_io/kaldi_io
+PATH=$PATH:$HOME/bin
+MANPATH=$MANPATH:$HOME/share/man
+
+# added by Anaconda3 4.3.1 installer
+export PATH="/home/rpapagari/anaconda3/bin:$PATH"
+#export PATH="/usr/bin/python:$PATH"
+
+#export PATH="/home/rpapagari/split_code/":$PATH
+#export PKG_CONFIG_PATH=/home/rpapagari/anaconda3/pkgs/opencv-3.1.0-np112py36_1/lib/pkgconfig/:$PKG_CONFIG_PATH
+
+
+export C_INCLUDE_PATH=/export/b18/nchen/libgpuarray/src:$C_INCLUDE_PATH
+export PATH=$PATH:/usr/local/cuda/bin/
+
+export PATH=$PATH:/home/rpapagari/anaconda3/lib/python3.6/site-packages/tensorflow/
+export KERAS_BACKEND=tensorflow 
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/export/b16/rpapagari/y/google-cloud-sdk/path.bash.inc' ]; then source '/export/b16/rpapagari/y/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/export/b16/rpapagari/y/google-cloud-sdk/completion.bash.inc' ]; then source '/export/b16/rpapagari/y/google-cloud-sdk/completion.bash.inc'; fi
+
+
+bind '"\e[A": history-search-backward' 
+bind '"\e[B": history-search-forward' 
+
+
+#export PATH=/home/rpapagari/.gem/ruby/2.3.0/bin:$PATH
+source /home/rpapagari/.rvm/scripts/rvm
+#export GEM_HOME=~/.rvm/scripts/rvm/gems
+#export GEM_PATH=~/.rvm/scripts/rvm/gems
+
+
+#export GEM_HOME=~/.gem
+#export GEM_PATH=~/.gem
+
+#source /export/b15/rpapagari/Tianzi_work/emotion_adaptation/env_Raghu.sh
+#source /export/b15/rpapagari/Tianzi_work/spec2spec/env_tmp.sh
+
+
+
+mp4_dur_fun() {
+    ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 $1
+}
+
+

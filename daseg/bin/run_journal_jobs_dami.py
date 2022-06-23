@@ -110,6 +110,8 @@ args = parser.parse_args()
 # DAMI - TODO: 
 # issue here what happens if his bashrc file disappears
 # this is not robust and open to issues down the line.
+# -----
+# 
 SCRIPT_TEMPLATE = """#!/usr/bin/env bash
 source /home/rpapagari/.bashrc
 source activate daseg_v2
@@ -118,8 +120,17 @@ cd {work_dir}
 {cmd}
 """
 
+# SCRIPT_TEMPLATE = """#!/usr/bin/env bash
+# source .bashrc_from_rpappagari
+# source activate daseg_v2
+# export CUDA_VISIBLE_DEVICES=$(free-gpu -n {num_gpus})
+# cd {work_dir}
+# {cmd}
+# """
+
 QSUB_TEMPLATE = "qsub -l \"hostname=!c01*&!c24*&c*,gpu={num_gpus},mem_free={mem}G,ram_free={mem}G\" -q {queue} -e {logerr} -o {logout} -N {name} {script}"
 
+# DAMI - TODO - DONE:
 WORK_DIR = '/export/c01/dkazeem/daseg_erc/daseg'
 # WORK_DIR = '/export/c02/rpapagari/daseg_erc/daseg'
 EXP_DIR = str(Path(WORK_DIR) / args.exp_dir)

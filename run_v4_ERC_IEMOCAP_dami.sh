@@ -113,11 +113,15 @@ if [[ $task_name == IEMOCAP_ConvClassif_bilstm ]]; then
     data_dir=/export/b15/rpapagari/Tianzi_work/IEMOCAP_dataset/data_v2_ERC_NoInfreqEmo_ExciteMapHap_clean_noise123_music123/cv_${cv}
     no_epochs=100
     suffix=_ASHNF_ExciteMapHap_clean_noise123_music123_frame_len${frame_len}_ConvClassif_bs${batch_size}_gacc${gacc}_concat_aug_${concat_aug}_${model_name}
-    suffix=_ASHNF_ExciteMapHap_clean_noise123_music123_frame_len${frame_len}_ConvClassif_bs${batch_size}_gacc${gacc}_concat_aug_${concat_aug}_${model_name}_debug
+    # suffix=_ASHNF_ExciteMapHap_clean_noise123_music123_frame_len${frame_len}_ConvClassif_bs${batch_size}_gacc${gacc}_concat_aug_${concat_aug}_${model_name}_debug
     test_file=test.tsv
     results_suffix=.pkl
 fi
 
+
+###
+# DAMI - TODO: ran but not successful
+###
 if [[ $task_name == IEMOCAP_ConvClassif_ResNet ]]; then
     data_dir=/export/b15/rpapagari/Tianzi_work/IEMOCAP_dataset/data_v2_ERC_NoInfreqEmo_ExciteMapHap_fs10ms_clean_noise123_music123/cv_${cv}
     no_epochs=100
@@ -143,8 +147,9 @@ if [[ $task_name == IEMOCAP_ConvClassif_ResNet ]]; then
     #results_suffix=_ASHNF_UttEval_fs100ms.pkl
 fi
 
-
-
+###
+# DAMI - TODO: DONE, ran example
+###
 if [[ $task_name == IEMOCAP_ConvClassif_xformer_NoInfreqEmo ]]; then
 ####################  convclassif with xformer and fs=10ms  ######################
     corpus=IEMOCAP_v2
@@ -463,7 +468,8 @@ for label_scheme in Exact #E IE # Exact
 do
 for segmentation_type in smooth #fine #smooth
 do
-    python daseg/bin/run_journal_jobs.py \
+    # python daseg/bin/run_journal_jobs.py \
+    python daseg/bin/run_journal_jobs_dami.py \
             --data-dir $data_dir \
             --exp-dir ${main_exp_dir}/${corpus}_CV_${cv}_${label_scheme}LabelScheme_${segmentation_type}Segmentation${suffix}/${model_name}_${corpus}_${seed} \
             --train-mode $train_mode --frame-len $frame_len \
