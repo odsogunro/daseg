@@ -1,17 +1,25 @@
+#####
+# DAMI - START - 20220619
+#####
+journal_v2/
+# daseg/__pycache__/*
+# daseg/dataloaders/__pycache__/*
+# daseg/models/__pycache__/*
+**__pycache__/
+
+#####
+# DAMI - END
+#####
+
 deps/
 .idea/
 *.txt
 waste
 
-#####
-# DAMI - 20220619
-#####
-journal_v2/
-*/__pycache__/
-
 # Byte-compiled / optimized / DLL files
 
 __pycache__/
+
 *.py[cod]
 *$py.class
 
