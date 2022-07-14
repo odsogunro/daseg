@@ -5,7 +5,7 @@ journal_v2/
 # daseg/__pycache__/*
 # daseg/dataloaders/__pycache__/*
 # daseg/models/__pycache__/*
-**__pycache__/
+# daseg/models/__pycache__/
 
 #####
 # DAMI - END

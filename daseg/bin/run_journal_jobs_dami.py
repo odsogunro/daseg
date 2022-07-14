@@ -1,9 +1,9 @@
 import argparse
-import shutil
+import glob
+# import shutil # DAMI - TODO: isort complains that shutil is unused
 import subprocess
 from pathlib import Path
 from time import sleep
-import glob
 
 
 def str2bool(v):

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo 'START: script 02'
+# echo 'START: script 02'
 
-set -x
+# set -x
 
 cv=$1
 train_mode=$2

@@ -17,7 +17,8 @@ from tqdm.auto import tqdm
 from transformers import (
     AutoTokenizer,
     AutoModelForTokenClassification,
-    PreTrainedTokenizer, LongformerTokenizer
+    PreTrainedTokenizer, 
+    LongformerTokenizer
 )
 
 from daseg.conversion import predictions_to_dataset
