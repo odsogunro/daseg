@@ -4,6 +4,26 @@
 
 # set -x
 
+# https://linuxize.com/post/bash-comments/
+<< MULTILINE-COMMENT
+    
+    
+    cv: 
+        - cross validation sets numbered 1 through 5
+    
+    train_mode:
+        - 
+
+    num_gpus:
+        - 
+
+    
+
+MULTILINE-COMMENT
+
+# set -v
+# set -x
+
 cv=$1
 train_mode=$2
 num_gpus=${3-1}
@@ -13,6 +33,8 @@ concat_aug=${6--1}
 seed=${7-42}
 use_grid=${8-True}
 task_name=${9-ConvClassif_Longformer}
+
+# set +x
 
 ######### paramters previously set as default.
 # Now, you would like to write them per task to avoid danger of bugs. 
@@ -495,5 +517,5 @@ do
 done
 done
 
-echo 'END: script 02'
+# echo 'END: script 02'
 

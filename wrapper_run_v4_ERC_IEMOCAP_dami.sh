@@ -29,28 +29,26 @@
     
     task_name:
 
-        [BERT Models, https://arxiv.org/abs/1810.04805v2]
-            - task_name: IEMOCAP_ConvClassif_BERT
-                - dataset: IEMOCAP
-                - (downstream) task: CNN Classication
-                - (upstream) model: BERT
+        #####
+        # Utterance Classication
+        #####
 
-        [BiLSTM Models, https://arxiv.org/abs/1402.1128]
-
+        [BiLSTM Models, https://arxiv.org/abs/1402.1128] 
+        - RUN STATUS: Fails
             - task_name: IEMOCAP_UttClassif_bilstm
                 - dataset: IEMOCAP
                 - (downstream) task: Utterance Classication
                 - (upstream) model: BILSTM NN
 
-        [ResNet Models, https://arxiv.org/abs/1512.03385?context=cs]
-
+        [ResNet Models, https://arxiv.org/abs/1512.03385?context=cs]  
+        - RUN STATUS: 
             - task_name: IEMOCAP_UttClassif_ResNet
                 - dataset: IEMOCAP
                 - (downstream) task: Utterance Classication
                 - (upstream) model: ResNet CNN
 
         [Longformer Models, https://arxiv.org/abs/2004.05150]
-            
+        - RUN STATUS:     
             - task_name: IEMOCAP_UttClassif_longformer
                 - dataset: IEMOCAP
                 - (downstream) task: Utterance Classication
@@ -61,8 +59,22 @@
                 - (downstream) task: Utterance Classication
                 - (upstream) model: Longformer
 
+
+        #####
+        # Convultional NN Classication
+        #####
+
+        [BERT Models, https://arxiv.org/abs/1810.04805v2] 
+        - RUN STATUS: Fails
+            - task_name: IEMOCAP_ConvClassif_BERT
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: BERT
+
+
         [XFormer Models, https://facebookresearch.github.io/xformers/, https://github.com/facebookresearch/xformers]
-            
+        
+        - RUN STATUS: Fails
             - task_name: IEMOCAP_ConvClassif_XFormerConcatTokenTypeEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -73,6 +85,7 @@
                 - ?????: OOSNone
                 - ?????: spkrind
 
+        - RUN STATUS: 
             - task_name: IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -82,13 +95,15 @@
                 - ?????: silenceNone
                 - ?????: OOSNone
                 - ?????: spkrind
-
+        
+        - RUN STATUS: Fails
             - task_name: IEMOCAP_ConvClassif_xformer_NoInfreqEmo
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
                 - (upstream) model: XFormer
                 - ?????: NoInfreqEmo
 
+        - RUN STATUS: 
             - task_name: IEMOCAP_ConvClassif_XFormerConcatAveParamSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -98,6 +113,7 @@
                 - ?????: silenceNone
                 - ?????: OOSNone
 
+        - RUN STATUS: 
             - task_name: IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -107,6 +123,7 @@
                 - ?????: silenceNone
                 - ?????: OOSNone
 
+        - RUN STATUS: Fails
             - task_name: IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -116,6 +133,7 @@
                 - ?????: silenceNone
                 - ?????: OOSNone
 
+        - RUN STATUS: 
             - task_name: IEMOCAP_ConvClassif_xformer_smoothed_overlap_silenceNone_OOSNone
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -125,6 +143,7 @@
                 - ?????: silenceNone
                 - ?????: OOSNone
 
+        - RUN STATUS: 
             - task_name: IEMOCAP_ConvClassif_XFormerConcatSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -134,6 +153,7 @@
                 - ?????: silenceNone
                 - ?????: OOSNone
 
+        - RUN STATUS: 
             - task_name: IEMOCAP_ConvClassif_XFormerAddSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
@@ -144,25 +164,34 @@
                 - ?????: OOSNone    
     
     train_mode:
+        - TE: ?
+        _ T: Train
+        - E: Evaluate
 
+    gpu: 
+        - integer value
+
+    grid:
+        - boolean 0 or 1
 
     cv: 
-        cross validation sets numbered 1 through 5
+        - cross validation sets numbered 1 through 5
 MULTILINE-COMMENT
 
 train_mode=TE
 
-# 
+# << MULTILINE-COMMENT
+#     - the for loop here is empty. WHY?
+#     - what does -1 and 0 represent concat_aug --> concat augmentation
+# MULTILINE-COMMENT
+
 for concat_aug in -1 #0 # -1 ##-1 #-1 #-1 # 0 #-1
 do
 
-for task_name in IEMOCAP_ConvClassif_BERT
-
-# for task_name in IEMOCAP_UttClassif_bilstm 
-
-# for task_name in IEMOCAP_UttClassif_ResNet
-
-# for task_name in IEMOCAP_UttClassif_longformer
+#####
+# Convolutional NN Classification
+#####
+# for task_name in IEMOCAP_ConvClassif_BERT
 
 # for task_name in IEMOCAP_ConvClassif_XFormerConcatTokenTypeEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
 # for task_name in IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
@@ -174,6 +203,15 @@ for task_name in IEMOCAP_ConvClassif_BERT
 # for task_name in IEMOCAP_ConvClassif_xformer_smoothed_overlap_silenceNone_OOSNone
 # for task_name in IEMOCAP_ConvClassif_XFormerConcatSpeakerEmb_smoothed_overlap_silenceNone_OOSNone 
 # for task_name in IEMOCAP_ConvClassif_XFormerAddSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+
+
+#####
+# Utterance Classification
+#####
+
+for task_name in IEMOCAP_UttClassif_bilstm 
+# for task_name in IEMOCAP_UttClassif_ResNet
+# for task_name in IEMOCAP_UttClassif_longformer
 
     do
         for cv in 1 # 2 3 4 #1 2 3 4 5 

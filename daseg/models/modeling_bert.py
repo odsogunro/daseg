@@ -26,35 +26,24 @@ import torch
 import torch.utils.checkpoint
 from torch import nn
 from torch.nn import CrossEntropyLoss, MSELoss
-
 from transformers.activations import ACT2FN
-from transformers.file_utils import (
-    ModelOutput,
-    add_code_sample_docstrings,
-    add_start_docstrings,
-    add_start_docstrings_to_model_forward,
-    replace_return_docstrings,
-)
+from transformers.file_utils import (ModelOutput, add_code_sample_docstrings,
+                                     add_start_docstrings,
+                                     add_start_docstrings_to_model_forward,
+                                     replace_return_docstrings)
 from transformers.modeling_outputs import (
     BaseModelOutputWithCrossAttentions,
     BaseModelOutputWithPoolingAndCrossAttentions,
-    CausalLMOutputWithCrossAttentions,
-    MaskedLMOutput,
-    MultipleChoiceModelOutput,
-    NextSentencePredictorOutput,
-    QuestionAnsweringModelOutput,
-    SequenceClassifierOutput,
-    TokenClassifierOutput,
-)
-from transformers.modeling_utils import (
-    PreTrainedModel,
-    apply_chunking_to_forward,
-    find_pruneable_heads_and_indices,
-    prune_linear_layer,
-)
-from transformers.utils import logging
+    CausalLMOutputWithCrossAttentions, MaskedLMOutput,
+    MultipleChoiceModelOutput, NextSentencePredictorOutput,
+    QuestionAnsweringModelOutput, SequenceClassifierOutput,
+    TokenClassifierOutput)
+from transformers.modeling_utils import (PreTrainedModel,
+                                         apply_chunking_to_forward,
+                                         find_pruneable_heads_and_indices,
+                                         prune_linear_layer)
 from transformers.models.bert.configuration_bert import BertConfig
-
+from transformers.utils import logging
 
 logger = logging.get_logger(__name__)
 
@@ -1189,7 +1178,8 @@ class BertForMaskedLM(BertPreTrainedModel):
         input_shape = input_ids.shape
         effective_batch_size = input_shape[0]
 
-        #  add a dummy token
+        # add a dummy token
+        # DAMI - NOTE: ignore pylint compalints here.
         assert self.config.pad_token_id is not None, "The PAD token should be defined for generation"
         attention_mask = torch.cat([attention_mask, attention_mask.new_zeros((attention_mask.shape[0], 1))], dim=-1)
         dummy_token = torch.full(

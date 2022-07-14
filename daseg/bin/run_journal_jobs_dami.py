@@ -5,6 +5,51 @@ import subprocess
 from pathlib import Path
 from time import sleep
 
+""" 
+    _summary: (daseg_erc) dkazeem@c01:/export/c01/dkazeem/daseg_erc/daseg$ python daseg/bin/run_journal_jobs.py -h
+
+    usage: run_journal_jobs.py [-h] [--general-exps GENERAL_EXPS] [--use-grid USE_GRID] [--pause PAUSE] [--train TRAIN] [--evaluate EVALUATE] [--dry-run DRY_RUN] [--exp-dir EXP_DIR] [--data-dir DATA_DIR]
+                            [--train-mode TRAIN_MODE] [--max-sequence-length MAX_SEQUENCE_LENGTH] [--frame-len FRAME_LEN] [--label-scheme LABEL_SCHEME] [--segmentation-type SEGMENTATION_TYPE] [--num-gpus NUM_GPUS]
+                            [--batch-size BATCH_SIZE] [--gacc GACC] [--results-suffix RESULTS_SUFFIX] [--concat-aug CONCAT_AUG] [--corpus CORPUS] [--emospotloss-wt EMOSPOTLOSS_WT] [--no-epochs NO_EPOCHS]
+                            [--emospot-concat EMOSPOT_CONCAT] [--seed SEED] [--label-smoothing-alpha LABEL_SMOOTHING_ALPHA] [--model-name MODEL_NAME] [--pre-trained-model PRE_TRAINED_MODEL] [--test-file TEST_FILE]
+                            [--full-speech FULL_SPEECH] [--monitor-metric MONITOR_METRIC] [--monitor-metric-mode MONITOR_METRIC_MODE] [--pretrained-model-path PRETRAINED_MODEL_PATH] [--classwts CLASSWTS]
+
+            optional arguments:
+                -h, --help            show this help message and exit
+                --general-exps GENERAL_EXPS
+                --use-grid USE_GRID
+                --pause PAUSE
+                --train TRAIN
+                --evaluate EVALUATE
+                --dry-run DRY_RUN
+                --exp-dir EXP_DIR
+                --data-dir DATA_DIR
+                --train-mode TRAIN_MODE
+                --max-sequence-length MAX_SEQUENCE_LENGTH
+                --frame-len FRAME_LEN
+                --label-scheme LABEL_SCHEME
+                --segmentation-type SEGMENTATION_TYPE
+                --num-gpus NUM_GPUS
+                --batch-size BATCH_SIZE
+                --gacc GACC
+                --results-suffix RESULTS_SUFFIX
+                --concat-aug CONCAT_AUG
+                --corpus CORPUS
+                --emospotloss-wt EMOSPOTLOSS_WT
+                --no-epochs NO_EPOCHS
+                --emospot-concat EMOSPOT_CONCAT
+                --seed SEED
+                --label-smoothing-alpha LABEL_SMOOTHING_ALPHA
+                --model-name MODEL_NAME
+                --pre-trained-model PRE_TRAINED_MODEL
+                --test-file TEST_FILE
+                --full-speech FULL_SPEECH
+                --monitor-metric MONITOR_METRIC
+                --monitor-metric-mode MONITOR_METRIC_MODE
+                                        max, min
+                --pretrained-model-path PRETRAINED_MODEL_PATH
+                --classwts CLASSWTS
+"""
 
 def str2bool(v):
     if isinstance(v, bool):
@@ -111,7 +156,7 @@ args = parser.parse_args()
 # issue here what happens if his bashrc file disappears
 # this is not robust and open to issues down the line.
 # -----
-# 
+
 SCRIPT_TEMPLATE = """#!/usr/bin/env bash
 source /home/rpapagari/.bashrc
 source activate daseg_v2
@@ -157,18 +202,17 @@ if args.train_mode == 'E':
 corpus = args.corpus #'IEMOCAP'
 seed = args.seed
 
-submit(f"dasg train-transformer --model-name-or-path {args.model_name} --batch-size {args.batch_size} --val-batch-size 1 --epochs {args.no_epochs} "
-       f"--random-seed {args.seed} --num-gpus {args.num_gpus} --gradient-accumulation-steps {args.gacc} "
-       f"--max-sequence-length {args.max_sequence_length} --pre-trained-model {args.pre_trained_model} "
-       f"--frame-len {args.frame_len} --data-dir {args.data_dir} --train-mode {args.train_mode} "
-       f"--label-scheme {args.label_scheme} --segmentation-type {args.segmentation_type} "
-       f"--results-suffix {args.results_suffix} --concat-aug {args.concat_aug} "
-       f"--emospotloss-wt {args.emospotloss_wt} --emospot-concat {args.emospot_concat} "
-       f"--label-smoothing-alpha {args.label_smoothing_alpha} --test-file {args.test_file} "
-       f"--full-speech {args.full_speech} --monitor-metric {args.monitor_metric} "
-       f"--monitor-metric-mode {args.monitor_metric_mode} --pretrained-model-path {args.pretrained_model_path}  "
-       f"--classwts {args.classwts} {outdir()} ", 
-       name='train', work_dir=WORK_DIR, num_gpus=args.num_gpus)
-
-
-
+submit(
+    f"dasg train-transformer --model-name-or-path {args.model_name} --batch-size {args.batch_size} --val-batch-size 1 --epochs {args.no_epochs} "
+    f"--random-seed {args.seed} --num-gpus {args.num_gpus} --gradient-accumulation-steps {args.gacc} "
+    f"--max-sequence-length {args.max_sequence_length} --pre-trained-model {args.pre_trained_model} "
+    f"--frame-len {args.frame_len} --data-dir {args.data_dir} --train-mode {args.train_mode} "
+    f"--label-scheme {args.label_scheme} --segmentation-type {args.segmentation_type} "
+    f"--results-suffix {args.results_suffix} --concat-aug {args.concat_aug} "
+    f"--emospotloss-wt {args.emospotloss_wt} --emospot-concat {args.emospot_concat} "
+    f"--label-smoothing-alpha {args.label_smoothing_alpha} --test-file {args.test_file} "
+    f"--full-speech {args.full_speech} --monitor-metric {args.monitor_metric} "
+    f"--monitor-metric-mode {args.monitor_metric_mode} --pretrained-model-path {args.pretrained_model_path}  "
+    f"--classwts {args.classwts} {outdir()} ", 
+    name='train', work_dir=WORK_DIR, num_gpus=args.num_gpus
+)

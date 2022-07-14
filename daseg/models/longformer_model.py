@@ -22,24 +22,21 @@ import torch
 import torch.nn as nn
 from torch.nn import CrossEntropyLoss, MSELoss
 from torch.nn import functional as F
-
 from transformers.activations import ACT2FN, gelu
-from transformers.file_utils import (
-    ModelOutput,
-    add_code_sample_docstrings,
-    add_start_docstrings,
-    add_start_docstrings_to_model_forward,
-    replace_return_docstrings,
-)
-from transformers.modeling_outputs import MaskedLMOutput, SequenceClassifierOutput, TokenClassifierOutput
-from transformers.modeling_utils import (
-    PreTrainedModel,
-    apply_chunking_to_forward,
-    find_pruneable_heads_and_indices,
-    prune_linear_layer,
-)
+from transformers.file_utils import (ModelOutput, add_code_sample_docstrings,
+                                        add_start_docstrings,
+                                        add_start_docstrings_to_model_forward,
+                                        replace_return_docstrings)
+from transformers.modeling_outputs import (MaskedLMOutput,
+                                            SequenceClassifierOutput,
+                                            TokenClassifierOutput)
+from transformers.modeling_utils import (PreTrainedModel,
+                                            apply_chunking_to_forward,
+                                            find_pruneable_heads_and_indices,
+                                            prune_linear_layer)
+from transformers.models.longformer.configuration_longformer import \
+    LongformerConfig
 from transformers.utils import logging
-from transformers.models.longformer.configuration_longformer import LongformerConfig
 
 from daseg.models.x_vector import _XvectorModel_Regression
 
@@ -424,7 +421,7 @@ class LongformerSelfAttention(nn.Module):
 
         The `attention_mask` is changed in `BertModel.forward` from 0, 1, 2 to -ve: no attention
 
-              0: local attention
+            0: local attention
             +ve: global attention
 
         """
@@ -578,16 +575,18 @@ class LongformerSelfAttention(nn.Module):
         shift every row 1 step right, converting columns into diagonals.
 
         Example::
-              chunked_hidden_states: [ 0.4983,  2.6918, -0.0071,  1.0492,
-                                       -1.8348,  0.7672,  0.2986,  0.0285,
-                                       -0.7584,  0.4206, -0.0405,  0.1599,
-                                       2.0514, -1.1600,  0.5372,  0.2629 ]
-              window_overlap = num_rows = 4
-             (pad & diagonalize) =>
-             [ 0.4983,  2.6918, -0.0071,  1.0492, 0.0000,  0.0000,  0.0000
-               0.0000,  -1.8348,  0.7672,  0.2986,  0.0285, 0.0000,  0.0000
-               0.0000,  0.0000, -0.7584,  0.4206, -0.0405,  0.1599, 0.0000
-               0.0000,  0.0000,  0.0000, 2.0514, -1.1600,  0.5372,  0.2629 ]
+            chunked_hidden_states: [ 
+                                    0.4983,  2.6918, -0.0071,  1.0492,
+                                    -1.8348,  0.7672,  0.2986,  0.0285,
+                                    -0.7584,  0.4206, -0.0405,  0.1599,
+                                    2.0514, -1.1600,  0.5372,  0.2629 ]
+            window_overlap = num_rows = 4
+            (pad & diagonalize) =>
+            [ 
+                0.4983,  2.6918, -0.0071,  1.0492, 0.0000,  0.0000,  0.0000
+                0.0000,  -1.8348,  0.7672,  0.2986,  0.0285, 0.0000,  0.0000
+                0.0000,  0.0000, -0.7584,  0.4206, -0.0405,  0.1599, 0.0000
+                0.0000,  0.0000,  0.0000, 2.0514, -1.1600,  0.5372,  0.2629 ]
         """
         total_num_heads, num_chunks, window_overlap, hidden_dim = chunked_hidden_states.size()
         chunked_hidden_states = F.pad(
