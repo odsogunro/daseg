@@ -9,8 +9,19 @@
 
 
 # https://linuxize.com/post/bash-comments/
-<< 'MULTILINE-COMMENT'
-    variables defined in this wrapper
+<< MULTILINE-COMMENT
+    1. [this wrapper]
+        - script_name: wrapper_run_v4ERC_IEMOCAP.sh [OR] wrapper_run_v4ERC_IEMOCAP_dami.sh
+    
+    2. [calls this wrapper]
+        - script_name: run_v4ERC_IEMOCAP.sh [OR] run_v4ERC_IEMOCAP_dami.sh
+    
+    3. [calls this wrapper]
+        - script_name: run_journal_jobs.py [OR] run_journal_jobs_dami.py
+
+
+    -----
+    variables defined in this wrapper script
     
     concat_aug: 
         -1 for ?? 
@@ -18,13 +29,13 @@
     
     task_name:
 
-        [BERT Models]
+        [BERT Models, https://arxiv.org/abs/1810.04805v2]
             - task_name: IEMOCAP_ConvClassif_BERT
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
                 - (upstream) model: BERT
 
-        [BiLSTM Models]
+        [BiLSTM Models, https://arxiv.org/abs/1402.1128]
 
             - task_name: IEMOCAP_UttClassif_bilstm
                 - dataset: IEMOCAP
@@ -55,20 +66,102 @@
             - task_name: IEMOCAP_ConvClassif_XFormerConcatTokenTypeEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
                 - dataset: IEMOCAP
                 - (downstream) task: CNN Classication
-                - (upstream) model: Longformer
+                - (upstream) model: XFormerConcatTokenTypeEmb
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone
+                - ?????: spkrind
+
+            - task_name: IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: XFormerConcatAveSpeakerEmb
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone
+                - ?????: spkrind
+
+            - task_name: IEMOCAP_ConvClassif_xformer_NoInfreqEmo
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: XFormer
+                - ?????: NoInfreqEmo
+
+            - task_name: IEMOCAP_ConvClassif_XFormerConcatAveParamSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: XFormerConcatAveParamSpeakerEmb
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone
+
+            - task_name: IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: XFormerConcatAveSpeakerEmb
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone
+
+            - task_name: IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: XFormerAddAveSpeakerEmb
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone
+
+            - task_name: IEMOCAP_ConvClassif_xformer_smoothed_overlap_silenceNone_OOSNone
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: xformer
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone
+
+            - task_name: IEMOCAP_ConvClassif_XFormerConcatSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: XFormerConcatSpeakerEmb
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone
+
+            - task_name: IEMOCAP_ConvClassif_XFormerAddSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
+                - dataset: IEMOCAP
+                - (downstream) task: CNN Classication
+                - (upstream) model: XFormerAddSpeakerEmb
+                - ?????: smoothed
+                - ?????: overlap
+                - ?????: silenceNone
+                - ?????: OOSNone    
     
+    train_mode:
+
+
     cv: 
         cross validation sets numbered 1 through 5
 MULTILINE-COMMENT
 
 train_mode=TE
+
+# 
 for concat_aug in -1 #0 # -1 ##-1 #-1 #-1 # 0 #-1
 do
 
 for task_name in IEMOCAP_ConvClassif_BERT
 
 # for task_name in IEMOCAP_UttClassif_bilstm 
+
 # for task_name in IEMOCAP_UttClassif_ResNet
+
 # for task_name in IEMOCAP_UttClassif_longformer
 
 # for task_name in IEMOCAP_ConvClassif_XFormerConcatTokenTypeEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
@@ -82,37 +175,18 @@ for task_name in IEMOCAP_ConvClassif_BERT
 # for task_name in IEMOCAP_ConvClassif_XFormerConcatSpeakerEmb_smoothed_overlap_silenceNone_OOSNone 
 # for task_name in IEMOCAP_ConvClassif_XFormerAddSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
 
-
-###
-# Raghu - SEE ABOVE 
-###
-#IEMOCAP_UttClassif_bilstm 
-#IEMOCAP_UttClassif_ResNet
-#IEMOCAP_UttClassif_longformer
-
-# IEMOCAP_ConvClassif_XFormerConcatTokenTypeEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
-#IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
-#IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
-#IEMOCAP_ConvClassif_xformer_NoInfreqEmo
-#IEMOCAP_ConvClassif_XFormerConcatAveParamSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
-#IEMOCAP_ConvClassif_XFormerConcatAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
-#IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
-# IEMOCAP_ConvClassif_xformer_smoothed_overlap_silenceNone_OOSNone
-#IEMOCAP_ConvClassif_XFormerConcatSpeakerEmb_smoothed_overlap_silenceNone_OOSNone 
-#IEMOCAP_ConvClassif_XFormerAddSpeakerEmb_smoothed_overlap_silenceNone_OOSNone
-
-do
-    for cv in 1 # 2 3 4 #1 2 3 4 5 
     do
-        gpu=1
-        grid=True
-        bash run_v4_ERC_IEMOCAP_dami.sh $cv $train_mode $gpu 3 10 $concat_aug 42 $grid $task_name
-        
-        #bash run_v4_ERC_IEMOCAP_.sh $cv $train_mode $gpu 3 10 $concat_aug 42 $grid $task_name
-        #bash run_v4_ERC_IEMOCAP.sh $cv $train_mode $gpu 6 5 $concat_aug 42 $grid $task_name
-        #bash run_v4_ERC_IEMOCAP.sh $cv $train_mode $gpu 100 5 $concat_aug 42 $grid $task_name
+        for cv in 1 # 2 3 4 #1 2 3 4 5 
+            do
+                gpu=1
+                grid=True
+                bash run_v4_ERC_IEMOCAP_dami.sh $cv $train_mode $gpu 3 10 $concat_aug 42 $grid $task_name
+                
+                #bash run_v4_ERC_IEMOCAP_.sh $cv $train_mode $gpu 3 10 $concat_aug 42 $grid $task_name
+                #bash run_v4_ERC_IEMOCAP.sh $cv $train_mode $gpu 6 5 $concat_aug 42 $grid $task_name
+                #bash run_v4_ERC_IEMOCAP.sh $cv $train_mode $gpu 100 5 $concat_aug 42 $grid $task_name
+            done
     done
-done
 done
 # echo 'END: script 01'
 
