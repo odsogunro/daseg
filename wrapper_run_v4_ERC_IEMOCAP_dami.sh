@@ -191,7 +191,7 @@ do
 #####
 # Convolutional NN Classification
 #####
-# for task_name in IEMOCAP_ConvClassif_BERT
+for task_name in IEMOCAP_ConvClassif_BERT
 
 # for task_name in IEMOCAP_ConvClassif_XFormerConcatTokenTypeEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
 # for task_name in IEMOCAP_ConvClassif_XFormerAddAveSpeakerEmb_smoothed_overlap_silenceNone_OOSNone_spkrind
@@ -209,7 +209,7 @@ do
 # Utterance Classification
 #####
 
-for task_name in IEMOCAP_UttClassif_bilstm 
+# for task_name in IEMOCAP_UttClassif_bilstm 
 # for task_name in IEMOCAP_UttClassif_ResNet
 # for task_name in IEMOCAP_UttClassif_longformer
 
