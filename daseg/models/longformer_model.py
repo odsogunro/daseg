@@ -1610,9 +1610,9 @@ class LongformerForSequenceClassification(LongformerPreTrainedModel):
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=SequenceClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -1860,9 +1860,9 @@ class LongformerForTokenClassification(LongformerPreTrainedModel):
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -1969,9 +1969,9 @@ class LongformerForTokenClassificationEmoSpot(LongformerPreTrainedModel):
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -2130,9 +2130,9 @@ class XFormerForTokenClassificationEmoSpot(LongformerPreTrainedModel):
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -2305,9 +2305,9 @@ class XFormerForTokenClassificationAddSpeakerEmb(LongformerPreTrainedModel):
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -2468,9 +2468,9 @@ class XFormerForTokenClassificationAddAveSpeakerEmb(LongformerPreTrainedModel):
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -2635,9 +2635,9 @@ class XFormerForTokenClassificationConcatSpeakerEmb(LongformerPreTrainedModel):
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -2799,9 +2799,9 @@ class XFormerForTokenClassificationConcatAveSpeakerEmb(LongformerPreTrainedModel
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -2968,9 +2968,9 @@ class XFormerForTokenClassificationConcatAveSpeakerEmbSpkrDiarize(LongformerPreT
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -3139,9 +3139,9 @@ class XFormerForTokenClassificationAddAveSpeakerEmbSpkrDiarize(LongformerPreTrai
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -3306,9 +3306,9 @@ class XFormerForTokenClassificationConcatTokenTypeEmb(LongformerPreTrainedModel)
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -3472,9 +3472,9 @@ class XFormerForTokenClassificationConcatAveParamSpeakerEmb(LongformerPreTrained
 
     @add_start_docstrings_to_model_forward(LONGFORMER_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=TokenClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
@@ -4013,9 +4013,9 @@ class LongformerForMultipleChoice(LongformerPreTrainedModel):
         LONGFORMER_INPUTS_DOCSTRING.format("batch_size, num_choices, sequence_length")
     )
     @add_code_sample_docstrings(
-        # tokenizer_class=_TOKENIZER_FOR_DOC,
+        tokenizer_class=_TOKENIZER_FOR_DOC,
         # DAMI: https://github.com/openai/gpt-2/issues/299
-        processor_class=_TOKENIZER_FOR_DOC,
+        # processor_class=_TOKENIZER_FOR_DOC,
         checkpoint="allenai/longformer-base-4096",
         output_type=LongformerMultipleChoiceModelOutput,
         config_class=_CONFIG_FOR_DOC,
