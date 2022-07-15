@@ -13,7 +13,7 @@ journal_v2/
 
 deps/
 .idea/
-*.txt
+# *.txt
 waste
 
 # Byte-compiled / optimized / DLL files
