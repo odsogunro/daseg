@@ -61,7 +61,7 @@
 
 
         #####
-        # Convultional NN Classication
+        # Convolutional NN Classication
         #####
 
         [BERT Models, https://arxiv.org/abs/1810.04805v2] 
