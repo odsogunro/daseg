@@ -9,14 +9,53 @@
     
     
     cv: 
+
         - cross validation sets numbered 1 through 5
     
     train_mode:
-        - 
+        - T for training
+        - E for evaluating
 
     num_gpus:
-        - 
+        - number of gpus
+    
+    batch_size
+        - ...
 
+    gacc
+        - ...
+    
+    concat_aug
+        - ...
+        
+    seed
+        - ...
+    
+    use_grid
+        - ...
+    
+    task_name
+    - ...
+
+    emospotloss_wt
+    - ...
+
+    emospot_concat
+    - ...
+
+    main_expr_dir
+    - ...
+    
+    label_smoothing
+    - ...
+
+    full_speech
+    - False
+    - True
+
+    classwts
+    - 1
+    - ...
     
 
 MULTILINE-COMMENT
