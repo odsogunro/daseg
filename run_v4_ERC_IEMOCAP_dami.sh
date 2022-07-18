@@ -56,6 +56,27 @@
     classwts
     - 1
     - ...
+
+    corpus
+    - IEMOCAPv2
+
+    max_sequence_length
+    - 512
+
+    model_name
+    - ERCTransformerBERT
+    - bilstm
+    - ResNet
+    - longformer
+    - xformer
+    - XFormerAddSpeakerEmb
+    - XFormerAddAveSpeakerEmb
+    - XFormerConcatSpeakerEmb
+    - XFormerConcatAveSpeakerEmbSpkrDiarize
+    - XFormerAddAveSpeakerEmbSpkrDiarize
+    - XFormerConcatTokenTypeEmb
+    - XFormerConcatAveParamSpeakerEmb
+    - xformer_cnnop_segpool
     
 
 MULTILINE-COMMENT
