@@ -1,3 +1,7 @@
+###
+# original requirements provided 
+# all requirements moved below
+###
 # spacy==2.2.4
 # cytoolz
 # scikit-learn>=0.22
@@ -320,6 +324,8 @@ pluggy==0.13.1
 # ERROR: Ignored the following versions that require a different python version: 0.7 Requires-Python >=3.6, <3.7; 0.8 Requires-Python >=3.6, <3.7
 # ERROR: Could not find a version that satisfies the requirement plz==0.1 (from versions: none)
 # ERROR: No matching distribution found for plz==0.1
+# this is from the original
+git+https://github.com/pzelasko/plz
 preshed==3.0.4
 prometheus-client==0.9.0
 prompt-toolkit==3.0.8
@@ -355,7 +361,10 @@ scipy==1.5.4
 seaborn==0.11.0
 Send2Trash==1.5.0
 # seqeval==0.0.13.dev2+gb33a1b9
-seqeval>=0.0.13
+# this works
+# seqeval>=0.0.13
+# this is from the original
+git+https://github.com/pzelasko/seqeval
 # setuptools==49.6.0.post20201009
 setuptools>=49.6.0
 shellingham==1.3.2
